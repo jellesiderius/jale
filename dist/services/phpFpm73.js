@@ -8,8 +8,8 @@ class PhpFpm73 extends phpFpm_1.default {
         this.isEndOfLife = true;
         this.versionName = '7.3';
         this.service = `php@${this.versionName}`;
-        this.configPath = `${this.configRootPath}/7.3/php-fpm.d/www.conf`;
-        this.iniDirectoryPath = `${this.configRootPath}/7.3/conf.d`;
+        this.configPath = `${this.configRootPath}/${this.versionName}/php-fpm.d/www.conf`;
+        this.iniDirectoryPath = `${this.configRootPath}/${this.versionName}/conf.d`;
     }
 }
 exports.default = PhpFpm73;

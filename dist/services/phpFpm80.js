@@ -7,9 +7,9 @@ class PhpFpm80 extends phpFpm_1.default {
         super(...arguments);
         this.isEndOfLife = false;
         this.versionName = '8.0';
-        this.service = 'php@8.0';
-        this.configPath = `${this.configRootPath}/8.0/php-fpm.d/www.conf`;
-        this.iniDirectoryPath = `${this.configRootPath}/8.0/conf.d`;
+        this.service = `php@${this.versionName}`;
+        this.configPath = `${this.configRootPath}/${this.versionName}/php-fpm.d/www.conf`;
+        this.iniDirectoryPath = `${this.configRootPath}/${this.versionName}/conf.d`;
     }
 }
 exports.default = PhpFpm80;

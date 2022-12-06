@@ -6,8 +6,8 @@ class PhpFpm74 extends PhpFpm {
 
     service = `php@${this.versionName}`
 
-    configPath = `${this.configRootPath}/7.4/php-fpm.d/www.conf`
-    iniDirectoryPath = `${this.configRootPath}/7.4/conf.d`
+    configPath = `${this.configRootPath}/${this.versionName}/php-fpm.d/www.conf`
+    iniDirectoryPath = `${this.configRootPath}/${this.versionName}/conf.d`
 }
 
 export default PhpFpm74
