@@ -38,17 +38,22 @@ class UseController {
                 (0, console_1.warning)('This PHP version is End Of Life. Be aware it might contain security flaws.\n   Please check http://php.net/supported-versions.php for more information.');
             }
             // Make sure the PHP version is installed.
-            const isVersionInstalled = yield OS_1.default.getInstance().packageManager.packageIsInstalled(newPhpVersion.service);
+            // @TODO: If newer version, remove this:
+            let versionService = newPhpVersion.service;
+            if (versionService == 'php@8.1') {
+                versionService = 'php';
+            }
+            const isVersionInstalled = yield OS_1.default.getInstance().packageManager.packageIsInstalled(versionService);
             if (!isVersionInstalled) {
                 (0, console_1.info)(`PHP ${newPhpVersion.versionName} not found, installing now...`);
                 const versionNumber = Number(newPhpVersion.versionName);
-                let versionService = newPhpVersion.service;
+                let versionServiceInstall = versionService;
                 if (versionNumber < 8.1) {
                     // Install tapped PHP version
                     yield OS_1.default.getInstance().packageManager.tap('shivammathur/php');
-                    versionService = 'shivammathur/php/' + versionService;
+                    versionServiceInstall = 'shivammathur/php/' + versionService;
                 }
-                yield OS_1.default.getInstance().packageManager.install(versionService, false);
+                yield OS_1.default.getInstance().packageManager.install(versionServiceInstall, false);
                 (0, console_1.info)(`Configuring PHP ${newPhpVersion.versionName}...`);
                 yield newPhpVersion.configure();
             }

@@ -169,6 +169,7 @@ class InstallController {
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                             // @ts-ignore this is valid, however, the types are kind of a mess? not sure yet.
                             skip: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                                // @TODO: If newer version, remove this:
                                 if (phpVersion == 'php@8.1')
                                     phpVersion = 'php';
                                 const isInstalled = yield OS_1.default.getInstance().packageManager.packageIsInstalled(phpVersion);
