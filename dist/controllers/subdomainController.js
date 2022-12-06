@@ -11,7 +11,7 @@ class SubdomainController {
         var _a;
         this.execute = (option, subdomain) => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (option !== 'add' && option !== 'del') {
-                console_1.error('Invalid option. Please use \'add\' or \'del\', followed by the subdomain.');
+                (0, console_1.error)('Invalid option. Please use \'add\' or \'del\', followed by the subdomain.');
                 return;
             }
             let restartNginx = false;
@@ -31,7 +31,7 @@ class SubdomainController {
          */
         this.subdomainExists = (subdomain) => {
             try {
-                const vhostConfig = fs_1.readFileSync(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
+                const vhostConfig = (0, fs_1.readFileSync)(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
                 return vhostConfig.includes(`${subdomain}.${this.hostname}`);
             }
             catch (e) {
@@ -45,10 +45,10 @@ class SubdomainController {
          */
         this.addSubdomain = (subdomain) => {
             if (this.subdomainExists(subdomain)) {
-                console_1.error(`Subdomain ${subdomain}.${this.hostname} already exists.`);
+                (0, console_1.error)(`Subdomain ${subdomain}.${this.hostname} already exists.`);
                 return false;
             }
-            let vhostConfig = fs_1.readFileSync(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
+            let vhostConfig = (0, fs_1.readFileSync)(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
             const rawServerNames = regex_1.serverNamesRegex.exec(vhostConfig);
             if (!rawServerNames) {
                 return false; // TODO: Catch this issue
@@ -57,8 +57,8 @@ class SubdomainController {
             serverNames.push(`${subdomain}.${this.hostname}`);
             // Replace the old server names with the server names including the new subdomain.
             vhostConfig = vhostConfig.replace(regex_1.serverNamesRegex, serverNames.join(' '));
-            fs_1.writeFileSync(`${jale_1.jaleSitesPath}/${this.project}.conf`, vhostConfig);
-            console_1.success(`Added subdomain ${console_1.url(`${subdomain}.${this.hostname}`)}.`);
+            (0, fs_1.writeFileSync)(`${jale_1.jaleSitesPath}/${this.project}.conf`, vhostConfig);
+            (0, console_1.success)(`Added subdomain ${(0, console_1.url)(`${subdomain}.${this.hostname}`)}.`);
             return true;
         };
         /**
@@ -68,10 +68,10 @@ class SubdomainController {
          */
         this.deleteSubdomain = (subdomain) => {
             if (!this.subdomainExists(subdomain)) {
-                console_1.error(`Subdomain ${console_1.url(`${subdomain}.${this.hostname}`)} does not exist.`);
+                (0, console_1.error)(`Subdomain ${(0, console_1.url)(`${subdomain}.${this.hostname}`)} does not exist.`);
                 return false;
             }
-            let vhostConfig = fs_1.readFileSync(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
+            let vhostConfig = (0, fs_1.readFileSync)(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
             const rawServerNames = regex_1.serverNamesRegex.exec(vhostConfig);
             if (!rawServerNames) {
                 return false; // TODO: Catch this issue
@@ -80,13 +80,13 @@ class SubdomainController {
             serverNames.splice(serverNames.indexOf(`${subdomain}.${this.hostname}`), 1);
             // Replace the old server names with the new list without the removed subdomain.
             vhostConfig = vhostConfig.replace(regex_1.serverNamesRegex, serverNames.join(' '));
-            fs_1.writeFileSync(`${jale_1.jaleSitesPath}/${this.project}.conf`, vhostConfig);
-            console_1.success(`Removed subdomain ${subdomain}.${this.hostname}.`);
+            (0, fs_1.writeFileSync)(`${jale_1.jaleSitesPath}/${this.project}.conf`, vhostConfig);
+            (0, console_1.success)(`Removed subdomain ${subdomain}.${this.hostname}.`);
             return true;
         };
-        this.config = jale_1.getConfig();
+        this.config = (0, jale_1.getConfig)();
         this.project = process.cwd().substring(process.cwd().lastIndexOf('/') + 1);
-        const vhostConfig = fs_1.readFileSync(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
+        const vhostConfig = (0, fs_1.readFileSync)(`${jale_1.jaleSitesPath}/${this.project}.conf`, 'utf-8');
         const serverNames = (_a = regex_1.serverNamesRegex.exec(vhostConfig)) !== null && _a !== void 0 ? _a : [];
         regex_1.serverNamesRegex.lastIndex = 0;
         this.hostname = `${this.project}.${this.config.tld}`;

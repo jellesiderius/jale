@@ -14,7 +14,7 @@ const supportedPhpVersions = [
     (new phpFpm80_1.default).versionName,
     (new phpFpm74_1.default).versionName,
     (new phpFpm73_1.default).versionName,
-    (new phpFpm72_1.default).versionName,
+    (new phpFpm72_1.default).versionName
 ];
 exports.supportedPhpVersions = supportedPhpVersions;
 const getPhpFpmByName = (phpVersion) => {
@@ -32,7 +32,7 @@ const getPhpFpmByName = (phpVersion) => {
         case `${(new phpFpm80_1.default).service}`:
             phpService = new phpFpm80_1.default();
             break;
-        case `${(new phpFpm81_1.default).service}@8.1`: // TODO: When PHP 8.2 is out, remove the hardcoded version.
+        case `${(new phpFpm81_1.default).service}`:
             phpService = new phpFpm81_1.default();
             break;
         default:

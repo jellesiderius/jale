@@ -37,7 +37,7 @@ class Homebrew extends packageManager_1.default {
             if (cask) {
                 args = ['install', 'cask', pkg];
             }
-            const { stdout } = yield execa_1.default('brew', args, { shell: true });
+            const { stdout } = yield (0, execa_1.default)('brew', args, { shell: true });
             return stdout.includes(pkg);
         });
     }
@@ -53,7 +53,7 @@ class Homebrew extends packageManager_1.default {
             if (cask) {
                 args = ['remove', 'cask', pkg];
             }
-            const { stdout } = yield execa_1.default('brew', args, { shell: true });
+            const { stdout } = yield (0, execa_1.default)('brew', args, { shell: true });
             return stdout.includes(pkg);
         });
     }
@@ -64,7 +64,7 @@ class Homebrew extends packageManager_1.default {
      */
     packageIsInstalled(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const { stdout } = yield execa_1.default('brew', ['list', '--formula'], { shell: true });
+            const { stdout } = yield (0, execa_1.default)('brew', ['list', '--formula'], { shell: true });
             return stdout.includes(pkg);
         });
     }

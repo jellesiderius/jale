@@ -10,13 +10,13 @@ const console_1 = require("./console");
  */
 function ensureDirectoryExists(path) {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
-        if (!fs_1.existsSync(path)) {
+        if (!(0, fs_1.existsSync)(path)) {
             try {
-                yield fs_1.mkdirSync(path, { mode: 0o755 });
+                yield (0, fs_1.mkdirSync)(path, { mode: 0o755 });
                 return path;
             }
             catch (e) {
-                console_1.error(e.message);
+                (0, console_1.error)(e.message);
                 return false;
             }
         }

@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('secure')
     .description('Secure a site with a self-signed SSL.')
     .action(() => {
-    (new secureController_1.default()).executeSecure().catch(err => console_1.error(err.message));
+    (new secureController_1.default()).executeSecure().catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=secureCommand.js.map

@@ -75,17 +75,17 @@ class InstallController {
          * Execute the installation process.
          */
         this.execute = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            console_1.clearConsole();
-            console.log(colors_1.white('✨ Thanks for using Jale! Let\'s get you started quickly.\n'));
-            yield sudo_1.requireSudo();
+            (0, console_1.clearConsole)();
+            console.log((0, colors_1.white)('✨ Thanks for using Jale! Let\'s get you started quickly.\n'));
+            yield (0, sudo_1.requireSudo)();
             inquirer_1.default
                 .prompt(this.questions)
                 .then(answers => {
-                console_1.emptyLine();
+                (0, console_1.emptyLine)();
                 this.install(answers);
             })
                 .catch((err) => {
-                console_1.error(`Something went wrong during the installation: ${err.message}`);
+                (0, console_1.error)(`Something went wrong during the installation: ${err.message}`);
             });
             return true;
         });
@@ -175,26 +175,26 @@ class InstallController {
                                 if (isInstalled)
                                     return `${phpVersion} is already installed.`;
                             }),
-                            task: (phpFpm_1.getPhpFpmByName(phpVersion)).install
+                            task: ((0, phpFpm_1.getPhpFpmByName)(phpVersion)).install
                         },
                         {
                             title: `Configure ${phpVersion}`,
-                            task: (phpFpm_1.getPhpFpmByName(phpVersion)).configure
+                            task: ((0, phpFpm_1.getPhpFpmByName)(phpVersion)).configure
                         },
                         {
                             title: `Link ${phpVersion}`,
                             enabled: () => index === 0,
-                            task: (phpFpm_1.getPhpFpmByName(phpVersion)).linkPhpVersion
+                            task: ((0, phpFpm_1.getPhpFpmByName)(phpVersion)).linkPhpVersion
                         },
                         {
                             title: `Restart ${phpVersion}`,
                             enabled: () => index === 0,
-                            task: (phpFpm_1.getPhpFpmByName(phpVersion)).restart
+                            task: ((0, phpFpm_1.getPhpFpmByName)(phpVersion)).restart
                         },
                         {
                             title: `Stop ${phpVersion}`,
                             enabled: () => index !== 0,
-                            task: (phpFpm_1.getPhpFpmByName(phpVersion)).stop
+                            task: ((0, phpFpm_1.getPhpFpmByName)(phpVersion)).stop
                         }
                     ])
                 });
@@ -213,15 +213,15 @@ class InstallController {
                         if (isInstalled)
                             return `${database} is already installed.`;
                     }),
-                    task: (database_1.getDatabaseByName(database)).install
+                    task: ((0, database_1.getDatabaseByName)(database)).install
                 },
                 {
                     title: `Configure ${database}`,
-                    task: (database_1.getDatabaseByName(database)).configure
+                    task: ((0, database_1.getDatabaseByName)(database)).configure
                 },
                 {
                     title: `Restart ${database}`,
-                    task: (database_1.getDatabaseByName(database)).restart
+                    task: ((0, database_1.getDatabaseByName)(database)).restart
                 }
             ])
         });
@@ -253,7 +253,7 @@ class InstallController {
         this.installOptionalServices = (answers) => {
             const optionalServicesTasks = [];
             answers.optionalServices.forEach((serviceName) => {
-                const service = optionalService_1.getOptionalServiceByname(serviceName);
+                const service = (0, optionalService_1.getOptionalServiceByname)(serviceName);
                 optionalServicesTasks.push({
                     title: `Install ${service.service}`,
                     task: (ctx, task) => task.newListr([
@@ -287,7 +287,7 @@ class InstallController {
         this.installTools = (answers) => {
             const toolsTasks = [];
             answers.apps.forEach((toolName) => {
-                const tool = tools_1.getToolByName(toolName);
+                const tool = (0, tools_1.getToolByName)(toolName);
                 toolsTasks.push({
                     title: `Install ${tool.name}`,
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -314,9 +314,9 @@ class InstallController {
      */
     install(answers) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield jale_1.ensureHomeDirExists();
-            yield filesystem_1.ensureDirectoryExists(jale_1.jaleLogsPath);
-            yield filesystem_1.ensureDirectoryExists(`${jale_1.jaleHomeDir}/server/`);
+            yield (0, jale_1.ensureHomeDirExists)();
+            yield (0, filesystem_1.ensureDirectoryExists)(jale_1.jaleLogsPath);
+            yield (0, filesystem_1.ensureDirectoryExists)(`${jale_1.jaleHomeDir}/server/`);
             yield fs.writeFileSync(jale_1.jaleFallbackServer, fallbackServer_1.fallbackIndex);
             const tasks = new listr2_1.Listr([
                 this.configureJale(answers),

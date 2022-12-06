@@ -16,20 +16,20 @@ class CustomTool extends tool_1.default {
          */
         this.install = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (yield this.isInstalled()) {
-                console_1.error(`${this.name} already is installed. Execute it by running ${this.alias}`);
+                (0, console_1.error)(`${this.name} already is installed. Execute it by running ${this.alias}`);
                 return false;
             }
             const fileName = this.url.substring(this.url.lastIndexOf('/') + 1);
-            console_1.info(`Downloading binary for ${this.name}...`);
-            yield execa_1.default('curl', ['-OL', this.url], { cwd: '/tmp/' });
+            (0, console_1.info)(`Downloading binary for ${this.name}...`);
+            yield (0, execa_1.default)('curl', ['-OL', this.url], { cwd: '/tmp/' });
             if (!(yield this.isValidShasum(`/tmp/${fileName}`))) {
-                console_1.error(`Unable to install ${this.name}. The checksum ${this.shasum} is not equal to the one of the downloaded file.`);
-                yield fs_1.unlinkSync(`/tmp/${fileName}`);
+                (0, console_1.error)(`Unable to install ${this.name}. The checksum ${this.shasum} is not equal to the one of the downloaded file.`);
+                yield (0, fs_1.unlinkSync)(`/tmp/${fileName}`);
                 return false;
             }
             yield fs.copyFileSync(`/tmp/${fileName}`, `${this.binLocation}/${this.alias}`);
-            yield fs_1.chmodSync(`${this.binLocation}/${this.alias}`, 0o777);
-            console_1.success(`Successfully installed ${this.name}.`);
+            yield (0, fs_1.chmodSync)(`${this.binLocation}/${this.alias}`, 0o777);
+            (0, console_1.success)(`Successfully installed ${this.name}.`);
             return true;
         });
         /**
@@ -37,24 +37,24 @@ class CustomTool extends tool_1.default {
          */
         this.uninstall = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!(yield this.isInstalled())) {
-                console_1.error(`${this.name} is not installed`);
+                (0, console_1.error)(`${this.name} is not installed`);
                 return false;
             }
-            console_1.info(`Uninstalling ${this.name}...`);
+            (0, console_1.info)(`Uninstalling ${this.name}...`);
             try {
-                yield fs_1.unlinkSync(`${this.binLocation}/${this.alias}`);
+                yield (0, fs_1.unlinkSync)(`${this.binLocation}/${this.alias}`);
             }
             catch (e) {
                 throw new Error(`Unable to uninstall ${this.name}. Please remove the file manually to continue:\nrm${this.binLocation}/${this.alias}`);
             }
-            console_1.success(`Uninstalled ${this.name}.`);
+            (0, console_1.success)(`Uninstalled ${this.name}.`);
             return true;
         });
         /**
          * Check if the binary of the app exists.
          */
         this.isInstalled = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            return fs_1.existsSync(`${this.binLocation}/${this.alias}`);
+            return (0, fs_1.existsSync)(`${this.binLocation}/${this.alias}`);
         });
         /**
          * Check if the file has a valid shasum.
@@ -62,7 +62,7 @@ class CustomTool extends tool_1.default {
          * @param path
          */
         this.isValidShasum = (path) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const { stdout } = yield execa_1.default('shasum', ['-a256', path]);
+            const { stdout } = yield (0, execa_1.default)('shasum', ['-a256', path]);
             const shasum = stdout.replace(path, '').trim();
             return shasum === this.shasum;
         });

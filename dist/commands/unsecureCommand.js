@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('unsecure')
     .description('Unsecure a site and remove its self-signed certificate.')
     .action(() => {
-    (new secureController_1.default()).executeUnsecure().catch(err => console_1.error(err.message));
+    (new secureController_1.default()).executeUnsecure().catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=unsecureCommand.js.map

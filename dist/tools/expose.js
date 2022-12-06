@@ -14,12 +14,12 @@ class Expose extends tool_1.default {
          */
         this.install = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (yield this.isInstalled()) {
-                console_1.warning(`${this.name} already is installed. Execute it by running ${this.alias}`);
+                (0, console_1.warning)(`${this.name} already is installed. Execute it by running ${this.alias}`);
                 return false;
             }
-            console_1.info(`Installing ${this.name} using Composer...`);
-            yield execa_1.default('composer', ['global', 'require', 'beyondcode/expose']);
-            console_1.success(`Successfully installed ${this.name}.`);
+            (0, console_1.info)(`Installing ${this.name} using Composer...`);
+            yield (0, execa_1.default)('composer', ['global', 'require', 'beyondcode/expose']);
+            (0, console_1.success)(`Successfully installed ${this.name}.`);
             return true;
         });
         /**
@@ -27,19 +27,19 @@ class Expose extends tool_1.default {
          */
         this.uninstall = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!(yield this.isInstalled())) {
-                console_1.error(`${this.name} is not installed.`);
+                (0, console_1.error)(`${this.name} is not installed.`);
                 return false;
             }
-            console_1.info(`Uninstalling ${this.name} using Composer...`);
-            yield execa_1.default('composer', ['global', 'remove', 'beyondcode/expose']);
-            console_1.success(`Successfully uninstalled ${this.name}.`);
+            (0, console_1.info)(`Uninstalling ${this.name} using Composer...`);
+            yield (0, execa_1.default)('composer', ['global', 'remove', 'beyondcode/expose']);
+            (0, console_1.success)(`Successfully uninstalled ${this.name}.`);
             return true;
         });
         /**
          * Check if the app is already installed..
          */
         this.isInstalled = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const { stdout } = yield execa_1.default('composer', ['global', 'show', '-i']);
+            const { stdout } = yield (0, execa_1.default)('composer', ['global', 'show', '-i']);
             return stdout.includes('beyondcode/expose');
         });
     }

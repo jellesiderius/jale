@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('stop [service]')
     .description('Stop all or a specific service.')
     .action((service) => {
-    (new serviceController_1.default()).executeStop(service).catch(err => console_1.error(err.message));
+    (new serviceController_1.default()).executeStop(service).catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=stopCommand.js.map

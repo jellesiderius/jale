@@ -1,15 +1,14 @@
 import PhpFpm from './phpFpm'
 
-class PhpFpm80 extends PhpFpm {
+class PhpFpm81 extends PhpFpm {
     isEndOfLife = false
     versionName = '8.1'
 
-    // TODO: When PHP 8.2 is out, change this to php@8.1
-    service = 'php'
+    service = `php@${this.versionName}`
 
 
-    configPath = `${this.configRootPath}/8.0/php-fpm.d/www.conf`
-    iniDirectoryPath = `${this.configRootPath}/8.0/conf.d`
+    configPath = `${this.configRootPath}/8.1/php-fpm.d/www.conf`
+    iniDirectoryPath = `${this.configRootPath}/8.1/conf.d`
 }
 
-export default PhpFpm80
+export default PhpFpm81

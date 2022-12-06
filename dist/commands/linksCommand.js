@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('links')
     .description('List all Nginx vhost configurations')
     .action(() => {
-    (new sitesController_1.default()).listLinks().catch(err => console_1.error(err.message));
+    (new sitesController_1.default()).listLinks().catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=linksCommand.js.map

@@ -9,7 +9,7 @@ const filesystem_1 = require("./filesystem");
 /**
  * Get the location of the home directory of Jale.
  */
-const jaleHomeDir = `${os_1.homedir()}/.jale`;
+const jaleHomeDir = `${(0, os_1.homedir)()}/.jale`;
 exports.jaleHomeDir = jaleHomeDir;
 /**
  * Get the location of the Jale configuration.
@@ -53,7 +53,7 @@ exports.jaleNginxAppTemplatesPath = jaleNginxAppTemplatesPath;
  */
 function ensureHomeDirExists() {
     return tslib_1.__awaiter(this, void 0, void 0, function* () {
-        return filesystem_1.ensureDirectoryExists(jaleHomeDir);
+        return (0, filesystem_1.ensureDirectoryExists)(jaleHomeDir);
     });
 }
 exports.ensureHomeDirExists = ensureHomeDirExists;

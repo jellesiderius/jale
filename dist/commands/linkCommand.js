@@ -10,6 +10,6 @@ exports.default = (program) => program
     .action((name, options) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    (new sitesController_1.default()).executeLink(options.type, name).catch(err => console_1.error(err.message));
+    (new sitesController_1.default()).executeLink(options.type, name).catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=linkCommand.js.map

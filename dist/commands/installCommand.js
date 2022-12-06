@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('install')
     .description('Run the initial setup of Jale')
     .action(() => {
-    (new installController_1.default()).execute().catch(err => console_1.error(err.message));
+    (new installController_1.default()).execute().catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=installCommand.js.map

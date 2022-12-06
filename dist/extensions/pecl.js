@@ -1,4 +1,5 @@
 "use strict";
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const execa_1 = tslib_1.__importDefault(require("execa"));
@@ -10,6 +11,7 @@ const xdebug_1 = tslib_1.__importDefault(require("./php/xdebug"));
 const yaml_1 = tslib_1.__importDefault(require("./php/yaml"));
 class Pecl {
 }
+_a = Pecl;
 /**
  * All extensions available in Jale.
  */
@@ -24,7 +26,7 @@ Pecl.PHP_EXTENSIONS = [
  * Get the path of the extension directory currently used by PECL.
  */
 Pecl.getExtensionDirectory = () => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    const { stdout } = yield execa_1.default('pecl', ['config-get', 'ext_dir']);
+    const { stdout } = yield (0, execa_1.default)('pecl', ['config-get', 'ext_dir']);
     let directory = stdout.replace('\n', '').trim();
     if (directory.indexOf('/Cellar/') !== -1)
         directory = directory.replace('/lib/php/', '/pecl/');
@@ -36,7 +38,7 @@ Pecl.getExtensionDirectory = () => tslib_1.__awaiter(void 0, void 0, void 0, fun
  * @param optionals
  */
 Pecl.installExtensions = (optionals = false) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    console_1.info('Installing PECL extensions...');
+    (0, console_1.info)('Installing PECL extensions...');
     for (const extension of Pecl.PHP_EXTENSIONS) {
         const ext = new extension;
         if (!optionals && !ext.default)
@@ -51,7 +53,7 @@ Pecl.installExtensions = (optionals = false) => tslib_1.__awaiter(void 0, void 0
  * @param optionals
  */
 Pecl.uninstallExtensions = (optionals = false) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    console_1.info('Uninstalling PECL extensions...');
+    (0, console_1.info)('Uninstalling PECL extensions...');
     for (const extension of Pecl.PHP_EXTENSIONS) {
         const ext = new extension;
         if (!optionals && !ext.default)

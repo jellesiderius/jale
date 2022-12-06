@@ -10,10 +10,10 @@ class Tool {
          */
         this.install = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (yield this.isInstalled()) {
-                console_1.error(`${this.name} already is installed.`);
+                (0, console_1.error)(`${this.name} already is installed.`);
                 return false;
             }
-            console_1.info(`Installing ${this.name}...`);
+            (0, console_1.info)(`Installing ${this.name}...`);
             yield OS_1.default.getInstance().packageManager.install(this.alias, false);
             return true;
         });
@@ -22,12 +22,12 @@ class Tool {
          */
         this.uninstall = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!(yield this.isInstalled())) {
-                console_1.error(`${this.name} is not installed.`);
+                (0, console_1.error)(`${this.name} is not installed.`);
                 return false;
             }
-            console_1.info(`Uninstalling ${this.name}...`);
+            (0, console_1.info)(`Uninstalling ${this.name}...`);
             yield OS_1.default.getInstance().packageManager.uninstall(this.alias, false);
-            console_1.success(`Uninstalled ${this.name}.`);
+            (0, console_1.success)(`Uninstalled ${this.name}.`);
             return true;
         });
         /**

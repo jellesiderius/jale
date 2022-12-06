@@ -12,11 +12,11 @@ class UseController {
         this.execute = (service, version) => tslib_1.__awaiter(this, void 0, void 0, function* () {
             switch (service) {
                 case 'php':
-                    console_1.info(`Switching to PHP ${version}...`);
+                    (0, console_1.info)(`Switching to PHP ${version}...`);
                     yield this.switchPhpVersionTo(version);
                     return true;
                 default:
-                    console_1.error('Invalid service.');
+                    (0, console_1.error)('Invalid service.');
                     return false;
             }
         });
@@ -25,24 +25,24 @@ class UseController {
          * @param phpVersion
          */
         this.switchPhpVersionTo = (phpVersion) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const currentPhpVersion = yield phpFpm_1.getLinkedPhpVersion();
+            const currentPhpVersion = yield (0, phpFpm_1.getLinkedPhpVersion)();
             if (!phpFpm_1.supportedPhpVersions.includes(phpVersion)) {
                 throw Error(`Invalid PHP version. Please pick one of the following version: ${phpFpm_1.supportedPhpVersions.join(', ')}`);
             }
             if (currentPhpVersion.versionName === phpVersion) {
-                console_1.warning(`PHP ${phpVersion} is already active.`);
+                (0, console_1.warning)(`PHP ${phpVersion} is already active.`);
                 return;
             }
-            const newPhpVersion = phpFpm_1.getPhpFpmByName(`php@${phpVersion}`);
+            const newPhpVersion = (0, phpFpm_1.getPhpFpmByName)(`php@${phpVersion}`);
             if (newPhpVersion.isEndOfLife) {
-                console_1.warning('This PHP version is End Of Life. Be aware it might contain security flaws.\n   Please check http://php.net/supported-versions.php for more information.');
+                (0, console_1.warning)('This PHP version is End Of Life. Be aware it might contain security flaws.\n   Please check http://php.net/supported-versions.php for more information.');
             }
             // Make sure the PHP version is installed.
             const isVersionInstalled = yield OS_1.default.getInstance().packageManager.packageIsInstalled(newPhpVersion.service);
             if (!isVersionInstalled) {
-                console_1.info(`PHP ${newPhpVersion.versionName} not found, installing now...`);
+                (0, console_1.info)(`PHP ${newPhpVersion.versionName} not found, installing now...`);
                 yield OS_1.default.getInstance().packageManager.install(newPhpVersion.service, false);
-                console_1.info(`Configuring PHP ${newPhpVersion.versionName}...`);
+                (0, console_1.info)(`Configuring PHP ${newPhpVersion.versionName}...`);
                 yield newPhpVersion.configure();
             }
             yield currentPhpVersion.unLinkPhpVersion();
@@ -50,7 +50,7 @@ class UseController {
             yield newPhpVersion.linkPhpVersion();
             yield currentPhpVersion.stop();
             yield newPhpVersion.start();
-            console_1.success(`Successfully switched to PHP ${newPhpVersion.versionName}.`);
+            (0, console_1.success)(`Successfully switched to PHP ${newPhpVersion.versionName}.`);
         });
     }
 }

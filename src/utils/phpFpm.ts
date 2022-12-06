@@ -12,7 +12,7 @@ const supportedPhpVersions: string[] = [
     (new PhpFpm80).versionName,
     (new PhpFpm74).versionName,
     (new PhpFpm73).versionName,
-    (new PhpFpm72).versionName,
+    (new PhpFpm72).versionName
 ]
 
 const getPhpFpmByName = (phpVersion: string): PhpFpm => {
@@ -31,7 +31,7 @@ const getPhpFpmByName = (phpVersion: string): PhpFpm => {
     case `${(new PhpFpm80).service}`:
         phpService = new PhpFpm80()
         break
-    case `${(new PhpFpm81).service}@8.1`: // TODO: When PHP 8.2 is out, remove the hardcoded version.
+    case `${(new PhpFpm81).service}`:
         phpService = new PhpFpm81()
         break
     default:

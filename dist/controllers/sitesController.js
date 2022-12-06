@@ -17,11 +17,11 @@ class SitesController {
     constructor() {
         this.appTypes = ['shopware6', 'laravel', 'magento2', 'magento1'];
         this.listLinks = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const config = yield jale_1.getConfig();
-            yield filesystem_1.ensureDirectoryExists(jale_1.jaleSitesPath);
-            const sites = fs_1.readdirSync(jale_1.jaleSitesPath).map(fileName => fileName.replace(`.${config.tld}.conf`, ''));
+            const config = yield (0, jale_1.getConfig)();
+            yield (0, filesystem_1.ensureDirectoryExists)(jale_1.jaleSitesPath);
+            const sites = (0, fs_1.readdirSync)(jale_1.jaleSitesPath).map(fileName => fileName.replace(`.${config.tld}.conf`, ''));
             if (sites.length) {
-                console_1.info(`Currently there ${sites.length > 1 ? 'are' : 'is'} ${sites.length} active Nginx vhost ${sites.length > 1 ? 'configurations' : 'configuration'}\n`);
+                (0, console_1.info)(`Currently there ${sites.length > 1 ? 'are' : 'is'} ${sites.length} active Nginx vhost ${sites.length > 1 ? 'configurations' : 'configuration'}\n`);
                 const table = new cli_table_1.default({
                     head: ['Project', 'Secure'],
                     colors: false
@@ -33,47 +33,47 @@ class SitesController {
                 console.log(table.toString());
             }
             else {
-                console_1.info(`Currently there ${sites.length > 1 ? 'are' : 'is'} no active Nginx vhost ${sites.length > 1 ? 'configurations' : 'configuration'}`);
+                (0, console_1.info)(`Currently there ${sites.length > 1 ? 'are' : 'is'} no active Nginx vhost ${sites.length > 1 ? 'configurations' : 'configuration'}`);
             }
         });
         this.executeLink = (type, name) => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const config = yield jale_1.getConfig();
+            const config = yield (0, jale_1.getConfig)();
             let appType = config.defaultTemplate;
             if (type)
                 appType = type;
             if (!this.appTypes.includes(appType)) {
-                console_1.error(`Invalid app type ${appType}. Please select one of: ${this.appTypes.join(', ')}`);
+                (0, console_1.error)(`Invalid app type ${appType}. Please select one of: ${this.appTypes.join(', ')}`);
                 return;
             }
             const project = process.cwd().substring(process.cwd().lastIndexOf('/') + 1);
             const domain = name || project;
             const hostname = `${domain}.${config.tld}`;
-            console_1.info(`Linking ${project} to ${hostname}...`);
-            yield filesystem_1.ensureDirectoryExists(jale_1.jaleSitesPath);
+            (0, console_1.info)(`Linking ${project} to ${hostname}...`);
+            yield (0, filesystem_1.ensureDirectoryExists)(jale_1.jaleSitesPath);
             this.createNginxConfig(appType, hostname, project);
             yield (new nginx_1.default()).reload();
-            console_1.success(`Successfully linked ${domain}. Access it from ${console_1.url(`http://${hostname}`)}.`);
+            (0, console_1.success)(`Successfully linked ${domain}. Access it from ${(0, console_1.url)(`http://${hostname}`)}.`);
         });
         this.executeUnlink = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const config = yield jale_1.getConfig();
+            const config = yield (0, jale_1.getConfig)();
             const project = process.cwd().substring(process.cwd().lastIndexOf('/') + 1);
             let filename = `${project}.${config.tld}.conf`;
-            fs_1.readdirSync(jale_1.jaleSitesPath).forEach(file => {
+            (0, fs_1.readdirSync)(jale_1.jaleSitesPath).forEach(file => {
                 if (file.includes(project)) {
                     filename = file;
                 }
             });
-            if (!fs_1.existsSync(`${jale_1.jaleSitesPath}/${filename}`)) {
-                console_1.error(`This project doesn't seem to be linked because the configuration file can't be found: ${jale_1.jaleSitesPath}/${filename}`);
+            if (!(0, fs_1.existsSync)(`${jale_1.jaleSitesPath}/${filename}`)) {
+                (0, console_1.error)(`This project doesn't seem to be linked because the configuration file can't be found: ${jale_1.jaleSitesPath}/${filename}`);
                 return;
             }
-            console_1.info(`Unlinking ${project}...`);
+            (0, console_1.info)(`Unlinking ${project}...`);
             const secureController = new secureController_1.default;
-            if (fs_1.existsSync(secureController.crtPath))
+            if ((0, fs_1.existsSync)(secureController.crtPath))
                 yield secureController.executeUnsecure();
-            fs_1.unlinkSync(`${jale_1.jaleSitesPath}/${filename}`);
+            (0, fs_1.unlinkSync)(`${jale_1.jaleSitesPath}/${filename}`);
             yield (new nginx_1.default()).reload();
-            console_1.success(`Successfully unlinked ${project}.`);
+            (0, console_1.success)(`Successfully unlinked ${project}.`);
         });
         /**
          * Create a Nginx template for the provided hostname with a specific template.
@@ -85,16 +85,16 @@ class SitesController {
         this.createNginxConfig = (appType, hostname, project) => {
             switch (appType) {
                 case 'shopware6':
-                    fs_1.writeFileSync(`${jale_1.jaleSitesPath}/${project}.conf`, shopware6_1.default(hostname, process.cwd()));
+                    (0, fs_1.writeFileSync)(`${jale_1.jaleSitesPath}/${project}.conf`, (0, shopware6_1.default)(hostname, process.cwd()));
                     break;
                 case 'magento2':
-                    fs_1.writeFileSync(`${jale_1.jaleSitesPath}/${project}.conf`, magento2_1.default(hostname, process.cwd()));
+                    (0, fs_1.writeFileSync)(`${jale_1.jaleSitesPath}/${project}.conf`, (0, magento2_1.default)(hostname, process.cwd()));
                     break;
                 case 'magento1':
-                    fs_1.writeFileSync(`${jale_1.jaleSitesPath}/${project}.conf`, magento1_1.default(hostname, process.cwd()));
+                    (0, fs_1.writeFileSync)(`${jale_1.jaleSitesPath}/${project}.conf`, (0, magento1_1.default)(hostname, process.cwd()));
                     break;
                 default:
-                    fs_1.writeFileSync(`${jale_1.jaleSitesPath}/${project}.conf`, laravel_1.default(hostname, process.cwd()));
+                    (0, fs_1.writeFileSync)(`${jale_1.jaleSitesPath}/${project}.conf`, (0, laravel_1.default)(hostname, process.cwd()));
                     break;
             }
         };

@@ -27,15 +27,15 @@ class Mysql extends service_1.default {
             return true;
         });
         this.removeConfiguration = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            if (fs_1.existsSync(this.configPath))
-                yield fs_1.unlinkSync(this.configPath);
-            if (fs_1.existsSync(`${this.configPath}.default`))
-                yield fs_1.unlinkSync(`${this.configPath}.default`);
+            if ((0, fs_1.existsSync)(this.configPath))
+                yield (0, fs_1.unlinkSync)(this.configPath);
+            if ((0, fs_1.existsSync)(`${this.configPath}.default`))
+                yield (0, fs_1.unlinkSync)(`${this.configPath}.default`);
         });
         this.installConfiguration = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield fs_1.chmodSync(this.mysqlDirectoryPath, 0o777);
-            if (!fs_1.existsSync(this.configRootPath)) {
-                yield fs_1.mkdirSync(this.configRootPath);
+            yield (0, fs_1.chmodSync)(this.mysqlDirectoryPath, 0o777);
+            if (!(0, fs_1.existsSync)(this.configRootPath)) {
+                yield (0, fs_1.mkdirSync)(this.configRootPath);
             }
             let config = myCnf_1.default;
             if (this.service === 'mariadb' || this.service === 'mysql@8.0') {
@@ -47,11 +47,11 @@ class Mysql extends service_1.default {
                 config = config.replace('query_cache_limit=4194304', '');
                 config = config.replace('query_cache_size=67108864', '');
             }
-            yield fs_1.writeFileSync(this.configPath, config);
+            yield (0, fs_1.writeFileSync)(this.configPath, config);
         });
         this.setMaxFilesConfig = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield fs_1.writeFileSync(this.maxFilesConfPath, limitMaxFilesPlist_1.default);
-            yield execa_1.default('launchctl', ['load', '-w', this.maxFilesConfPath]);
+            yield (0, fs_1.writeFileSync)(this.maxFilesConfPath, limitMaxFilesPlist_1.default);
+            yield (0, execa_1.default)('launchctl', ['load', '-w', this.maxFilesConfPath]);
         });
         this.linkDatabase = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             yield OS_1.default.getInstance().serviceCtl.link(this.service);
@@ -59,7 +59,7 @@ class Mysql extends service_1.default {
         // TODO: We should get the current password from the Jale config instead.
         this.setRootPassword = (oldPassword = '', password = 'root') => tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('mysqladmin', ['-u', 'root', `--password='${oldPassword}'`, 'password', password], {
+                yield (0, execa_1.default)('mysqladmin', ['-u', 'root', `--password='${oldPassword}'`, 'password', password], {
                     stdio: 'inherit'
                 });
                 return true;

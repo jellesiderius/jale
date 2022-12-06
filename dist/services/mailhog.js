@@ -20,8 +20,8 @@ class Mailhog extends service_1.default {
          * Install the Mailhog Nginx configuration.
          */
         this.addNginxConfiguration = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const config = yield jale_1.getConfig();
-            return fs.writeFileSync(this.nginxConfigPath, mailhog_1.default(config.tld));
+            const config = yield (0, jale_1.getConfig)();
+            return fs.writeFileSync(this.nginxConfigPath, (0, mailhog_1.default)(config.tld));
         });
     }
 }

@@ -21,11 +21,11 @@ class Nginx extends service_1.default {
         this.jaleNginxConfigPath = `${this.jaleNginxFolderPath}/jale.conf`;
         this.fastCgiParamsConfigPath = `${OS_1.default.getInstance().usrLocalDir}/etc/nginx/fastcgi_params`;
         this.configure = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield filesystem_1.ensureDirectoryExists(this.jaleNginxFolderPath);
-            yield filesystem_1.ensureDirectoryExists(`${this.jaleNginxFolderPath}/apps`);
-            yield filesystem_1.ensureDirectoryExists(jale_2.jaleNginxAppTemplatesPath);
-            yield filesystem_1.ensureDirectoryExists(jale_2.jaleSitesPath);
-            yield filesystem_1.ensureDirectoryExists(`${jale_2.jaleLogsPath}/nginx`);
+            yield (0, filesystem_1.ensureDirectoryExists)(this.jaleNginxFolderPath);
+            yield (0, filesystem_1.ensureDirectoryExists)(`${this.jaleNginxFolderPath}/apps`);
+            yield (0, filesystem_1.ensureDirectoryExists)(jale_2.jaleNginxAppTemplatesPath);
+            yield (0, filesystem_1.ensureDirectoryExists)(jale_2.jaleSitesPath);
+            yield (0, filesystem_1.ensureDirectoryExists)(`${jale_2.jaleLogsPath}/nginx`);
             yield this.addConfiguration();
             yield this.addFallbackConfiguration();
             yield this.addFastCgiParams();

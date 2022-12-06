@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('use <service> <version>')
     .description('Switch a version of a specific service, i.e. use PHP 7.4 instead of 7.2.')
     .action((service, version) => {
-    (new useController_1.default()).execute(service, version).catch(err => console_1.error(err.message));
+    (new useController_1.default()).execute(service, version).catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=useCommand.js.map

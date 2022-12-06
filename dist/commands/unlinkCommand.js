@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('unlink')
     .description('Remove the Nginx vhost configuration for your current project.')
     .action(() => {
-    (new sitesController_1.default()).executeUnlink().catch(err => console_1.error(err.message));
+    (new sitesController_1.default()).executeUnlink().catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=unlinkCommand.js.map

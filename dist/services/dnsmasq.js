@@ -16,7 +16,7 @@ class Dnsmasq extends service_1.default {
         this.configPath = `${OS_1.default.getInstance().usrLocalDir}/etc/dnsmasq.conf`;
         this.customConfigPath = `${jale_1.jaleHomeDir}/dnsmasq.conf`;
         this.configure = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const config = yield jale_1.getConfig();
+            const config = yield (0, jale_1.getConfig)();
             this.appendCustomConfig();
             this.setDomain(config.tld);
             yield this.addDomainResolver(config.tld);
@@ -43,9 +43,9 @@ class Dnsmasq extends service_1.default {
          */
         this.addDomainResolver = (tld) => tslib_1.__awaiter(this, void 0, void 0, function* () {
             // TODO: Should improve this part, we're executing plain commands in order to bypass issues with root permissions.
-            yield sudo_1.requireSudo();
-            yield execa_1.default('sudo', ['mkdir', '-p', this.resolverPath], { shell: true, stdio: 'inherit' });
-            yield execa_1.default('sudo', ['bash', '-c', `'echo "nameserver 127.0.0.1" > ${this.resolverPath}/${tld}'`], {
+            yield (0, sudo_1.requireSudo)();
+            yield (0, execa_1.default)('sudo', ['mkdir', '-p', this.resolverPath], { shell: true, stdio: 'inherit' });
+            yield (0, execa_1.default)('sudo', ['bash', '-c', `'echo "nameserver 127.0.0.1" > ${this.resolverPath}/${tld}'`], {
                 shell: true,
                 stdio: 'inherit'
             });

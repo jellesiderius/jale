@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('start [service]')
     .description('Start all or a specific service.')
     .action((service) => {
-    (new serviceController_1.default()).executeStart(service).catch(err => console_1.error(err.message));
+    (new serviceController_1.default()).executeStart(service).catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=startCommand.js.map

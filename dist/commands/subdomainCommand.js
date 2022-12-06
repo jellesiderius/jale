@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('subdomain <option> <subdomain>')
     .description('Add or remove a subdomain to the current project.')
     .action((option, subdomain) => {
-    (new subdomainController_1.default()).execute(option, subdomain).catch(err => console_1.error(err.message));
+    (new subdomainController_1.default()).execute(option, subdomain).catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=subdomainCommand.js.map

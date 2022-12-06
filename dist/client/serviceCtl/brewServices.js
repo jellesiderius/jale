@@ -28,7 +28,7 @@ class BrewServices extends serviceCtl_1.default {
     reload(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('brew', ['services', 'reload', pkg], { shell: true });
+                yield (0, execa_1.default)('brew', ['services', 'reload', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -39,7 +39,7 @@ class BrewServices extends serviceCtl_1.default {
     restart(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('brew', ['services', 'restart', pkg], { shell: true });
+                yield (0, execa_1.default)('brew', ['services', 'restart', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -49,14 +49,14 @@ class BrewServices extends serviceCtl_1.default {
     }
     start(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield execa_1.default('brew', ['services', 'start', pkg], { shell: true });
+            yield (0, execa_1.default)('brew', ['services', 'start', pkg], { shell: true });
             return true;
         });
     }
     stop(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('brew', ['services', 'stop', pkg], { shell: true });
+                yield (0, execa_1.default)('brew', ['services', 'stop', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -67,7 +67,7 @@ class BrewServices extends serviceCtl_1.default {
     reloadAsRoot(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('sudo', ['brew', 'services', 'reload', pkg], { shell: true });
+                yield (0, execa_1.default)('sudo', ['brew', 'services', 'reload', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -78,7 +78,7 @@ class BrewServices extends serviceCtl_1.default {
     restartAsRoot(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('sudo', ['brew', 'services', 'restart', pkg], { shell: true });
+                yield (0, execa_1.default)('sudo', ['brew', 'services', 'restart', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -89,7 +89,7 @@ class BrewServices extends serviceCtl_1.default {
     startAsRoot(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('sudo', ['brew', 'services', 'start', pkg], { shell: true });
+                yield (0, execa_1.default)('sudo', ['brew', 'services', 'start', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -100,7 +100,7 @@ class BrewServices extends serviceCtl_1.default {
     stopAsRoot(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('sudo', ['brew', 'services', 'stop', pkg], { shell: true });
+                yield (0, execa_1.default)('sudo', ['brew', 'services', 'stop', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -111,7 +111,7 @@ class BrewServices extends serviceCtl_1.default {
     link(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('brew', ['link', '--overwrite', '--force', pkg], { shell: true });
+                yield (0, execa_1.default)('brew', ['link', '--overwrite', '--force', pkg], { shell: true });
                 return true;
             }
             catch (e) {
@@ -122,7 +122,7 @@ class BrewServices extends serviceCtl_1.default {
     unlink(pkg) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             try {
-                yield execa_1.default('brew', ['unlink', pkg], { shell: true });
+                yield (0, execa_1.default)('brew', ['unlink', pkg], { shell: true });
                 return true;
             }
             catch (e) {

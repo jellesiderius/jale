@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('restart [service]')
     .description('Restart all or a specific service.')
     .action((service) => {
-    (new serviceController_1.default()).executeRestart(service).catch(err => console_1.error(err.message));
+    (new serviceController_1.default()).executeRestart(service).catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=restartCommand.js.map

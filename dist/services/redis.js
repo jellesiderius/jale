@@ -12,7 +12,7 @@ class Redis extends service_1.default {
         this.service = 'redis';
         this.configPath = `${OS_1.default.getInstance().usrLocalDir}/etc/redis.conf`;
         this.configure = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield fs_1.writeFileSync(this.configPath, redis_1.default);
+            yield (0, fs_1.writeFileSync)(this.configPath, redis_1.default);
             return true;
         });
     }

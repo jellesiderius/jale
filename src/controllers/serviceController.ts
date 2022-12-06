@@ -11,6 +11,7 @@ import PhpFpm72 from '../services/phpFpm72'
 import PhpFpm73 from '../services/phpFpm73'
 import PhpFpm74 from '../services/phpFpm74'
 import PhpFpm80 from '../services/phpFpm80'
+import PhpFpm81 from '../services/phpFpm81'
 import Redis from '../services/redis'
 import Service from '../services/service'
 import {error, info, success, warning} from '../utils/console'
@@ -26,6 +27,7 @@ class ServiceController {
         new Mariadb(),
         new Mysql80(),
         new Mysql57(),
+        new PhpFpm81(),
         new PhpFpm80(),
         new PhpFpm74(),
         new PhpFpm73(),

@@ -14,11 +14,11 @@ class PhpExtension {
          * Get the path of the PHP ini currently used by PECL.
          */
         this.getPhpIni = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const peclIni = yield execa_1.default('pecl', ['config-get', 'php_ini']);
+            const peclIni = yield (0, execa_1.default)('pecl', ['config-get', 'php_ini']);
             const peclIniPath = peclIni.stdout.replace('\n', '');
-            if (fs_1.existsSync(peclIniPath))
+            if ((0, fs_1.existsSync)(peclIniPath))
                 return peclIniPath;
-            const phpIni = yield execa_1.default('php', ['-i', '|', 'grep', 'php.ini']);
+            const phpIni = yield (0, execa_1.default)('php', ['-i', '|', 'grep', 'php.ini']);
             const matches = phpIni.stdout.match(/Path => ([^\s]*)/);
             if (!matches || matches.length <= 0)
                 throw new Error('Unable to find php.ini.');
@@ -28,7 +28,7 @@ class PhpExtension {
          * Check if the extension is enabled.
          */
         this.isEnabled = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const { stdout } = yield execa_1.default('php', ['-m', '|', 'grep', this.extension]);
+            const { stdout } = yield (0, execa_1.default)('php', ['-m', '|', 'grep', this.extension]);
             const extensions = stdout.split('\n');
             return extensions.includes(this.extension);
         });
@@ -36,7 +36,7 @@ class PhpExtension {
          * Check if the extension is installed.
          */
         this.isInstalled = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            const { stdout } = yield execa_1.default('pecl', ['list', '|', 'grep', this.extension]);
+            const { stdout } = yield (0, execa_1.default)('pecl', ['list', '|', 'grep', this.extension]);
             return stdout.includes(this.extension);
         });
         /**
@@ -44,10 +44,10 @@ class PhpExtension {
          */
         this.install = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (yield this.isInstalled()) {
-                console_1.warning(`Extension ${this.extension} is already installed.`);
+                (0, console_1.warning)(`Extension ${this.extension} is already installed.`);
                 return false;
             }
-            const { stdout } = yield execa_1.default('pecl', ['install', this.extension]);
+            const { stdout } = yield (0, execa_1.default)('pecl', ['install', this.extension]);
             const installRegex = new RegExp(`Installing '(.*${this.alias}.so)'`, 'g').test(stdout);
             if (!installRegex)
                 throw new Error(`Unable to find installation path for ${this.extension}. Result:\n\n`);
@@ -59,21 +59,21 @@ class PhpExtension {
             const extensionRegex = new RegExp(`(zend_extension|extension)="(.*${this.alias}.so)"`, 'g').test(phpIni);
             if (!extensionRegex)
                 throw new Error(`Unable to find definition in ${phpIniPath} for ${this.extension}`);
-            console_1.success(`Extension ${this.extension} has been installed.`);
+            (0, console_1.success)(`Extension ${this.extension} has been installed.`);
             return true;
         });
         /**
          * Uninstall the extension.
          */
         this.uninstall = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield execa_1.default('pecl', ['uninstall', this.extension]);
+            yield (0, execa_1.default)('pecl', ['uninstall', this.extension]);
         });
         /**
          * Enable the extension.
          */
         this.enable = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (yield this.isEnabled()) {
-                console_1.warning(`Extension ${this.extension} is already enabled.`);
+                (0, console_1.warning)(`Extension ${this.extension} is already enabled.`);
                 return;
             }
             const phpIniPath = yield this.getPhpIni();
@@ -82,7 +82,7 @@ class PhpExtension {
             phpIni = phpIni.replace(regex, '');
             phpIni = `${this.extensionType}="${this.alias}.so"\n${phpIni}`;
             yield fs.writeFileSync(phpIniPath, phpIni);
-            console_1.success(`Extension ${this.extension} has been enabled.`);
+            (0, console_1.success)(`Extension ${this.extension} has been enabled.`);
         });
         /**
          * Disable the extension.
@@ -93,7 +93,7 @@ class PhpExtension {
             const regex = new RegExp(`;?(zend_extension|extension)=".*${this.alias}.so"\n`, 'g');
             phpIni = phpIni.replace(regex, '');
             yield fs.writeFileSync(phpIniPath, phpIni);
-            console_1.success(`Extension ${this.extension} has been disabled.`);
+            (0, console_1.success)(`Extension ${this.extension} has been disabled.`);
             return true;
         });
     }

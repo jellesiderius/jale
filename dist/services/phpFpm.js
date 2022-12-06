@@ -37,7 +37,7 @@ class PhpFpm extends service_1.default {
          * Create the z-performance.ini file which contains some optimized config settings.
          */
         this.addPerformanceConfiguration = () => tslib_1.__awaiter(this, void 0, void 0, function* () {
-            yield filesystem_1.ensureDirectoryExists(this.iniDirectoryPath);
+            yield (0, filesystem_1.ensureDirectoryExists)(this.iniDirectoryPath);
             const path = `${this.iniDirectoryPath}/z-performance.ini`;
             if (fs.existsSync(path)) {
                 return;

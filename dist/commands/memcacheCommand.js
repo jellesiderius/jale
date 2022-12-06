@@ -7,6 +7,6 @@ exports.default = (program) => program
     .command('memcache <status>')
     .description('Enable or disable Memcache. Use \'on\' or \'off\'.')
     .action((status) => {
-    (new memcacheController_1.default()).execute(status).catch(err => console_1.error(err.message));
+    (new memcacheController_1.default()).execute(status).catch(err => (0, console_1.error)(err.message));
 });
 //# sourceMappingURL=memcacheCommand.js.map

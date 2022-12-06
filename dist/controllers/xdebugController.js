@@ -11,7 +11,7 @@ class XdebugController {
          */
         this.execute = (status) => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (status !== 'on' && status !== 'off') {
-                console_1.error('Invalid status. Please provide status \'on\' or \'off\'.');
+                (0, console_1.error)('Invalid status. Please provide status \'on\' or \'off\'.');
                 return false;
             }
             const xdebug = new xdebug_1.default();
@@ -23,28 +23,28 @@ class XdebugController {
                 restart = yield this.disable(xdebug);
             }
             if (restart) {
-                const php = yield phpFpm_1.getLinkedPhpVersion();
+                const php = yield (0, phpFpm_1.getLinkedPhpVersion)();
                 yield php.restart();
             }
             return true;
         });
         this.enable = (xdebug) => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!(yield xdebug.isInstalled())) {
-                console_1.info('Extension xdebug is not installed. Installing now...');
+                (0, console_1.info)('Extension xdebug is not installed. Installing now...');
                 yield xdebug.install();
             }
             // TODO: Enable auto start configuration for xdebug.
-            console_1.info('Enabling xdebug...');
+            (0, console_1.info)('Enabling xdebug...');
             yield xdebug.enable();
             return true;
         });
         this.disable = (xdebug) => tslib_1.__awaiter(this, void 0, void 0, function* () {
             if (!(yield xdebug.isInstalled())) {
-                console_1.warning('Extension xdebug is not installed. We do not need to disable it then...');
+                (0, console_1.warning)('Extension xdebug is not installed. We do not need to disable it then...');
                 return false;
             }
             if (!(yield xdebug.isEnabled())) {
-                console_1.warning('Extension xdebug is not enabled.');
+                (0, console_1.warning)('Extension xdebug is not enabled.');
                 return false;
             }
             yield xdebug.disable();
