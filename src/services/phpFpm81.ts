@@ -6,7 +6,6 @@ class PhpFpm81 extends PhpFpm {
 
     service = `php@${this.versionName}`
 
-
     configPath = `${this.configRootPath}/8.1/php-fpm.d/www.conf`
     iniDirectoryPath = `${this.configRootPath}/8.1/conf.d`
 }

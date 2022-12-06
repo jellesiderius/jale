@@ -24,7 +24,6 @@ abstract class PhpFpm extends Service {
         return true
     }
 
-
     /**
      * Update Php's www.conf configuration.
      */

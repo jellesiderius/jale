@@ -1,7 +1,7 @@
 import PhpFpm from './phpFpm'
 
 class PhpFpm74 extends PhpFpm {
-    isEndOfLife = false
+    isEndOfLife = true
     versionName = '7.4'
 
     service = `php@${this.versionName}`

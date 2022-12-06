@@ -43,7 +43,7 @@ class InstallController {
             type: 'checkbox',
             name: 'phpVersions',
             message: 'Choose one or more PHP versions',
-            choices: ['php@8.1', 'php@8.0', 'php@7.4', 'php@7.3', 'php@7.2', 'php@7.1'],
+            choices: ['php@8.1', 'php@8.0', 'php@7.4', 'php@7.3', 'php@7.2'],
             validate: (input: string[]) => {
                 return input.length >= 1
             }

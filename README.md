@@ -23,7 +23,7 @@ Instead of using a single 'server.php' file which proxies every request, we just
 The following services are currently installed by Jale. Services marked with a * are optional, you can uncheck them ;-).
 - Nginx
 - Dnsmasq
-- PHP (7.1, 7.2, 7.3, 7.4 and 8.0)
+- PHP (7.2 to 7.4, 8.0)
 - MySQL (MySQL 5.7, 8.0 and MariaDB)
 - Redis*
 - Elasticsearch*
