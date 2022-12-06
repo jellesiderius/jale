@@ -46,7 +46,15 @@ class UseController {
 
         if (!isVersionInstalled) {
             info(`PHP ${newPhpVersion.versionName} not found, installing now...`)
-            await OS.getInstance().packageManager.install(newPhpVersion.service, false)
+
+            const versionNumber = Number(newPhpVersion.versionName)
+            let versionService = newPhpVersion.service
+
+            if (versionNumber < 8.1) {
+                versionService = 'shivammathur/php/' + versionService
+            }
+
+            await OS.getInstance().packageManager.install(versionService, false)
             info(`Configuring PHP ${newPhpVersion.versionName}...`)
             await newPhpVersion.configure()
         }
