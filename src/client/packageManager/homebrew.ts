@@ -53,6 +53,20 @@ class Homebrew extends PackageManager {
     }
 
     /**
+     * Adds a tap to brew
+     *
+     * @param pkg
+     * @param cask
+     */
+    async tap(target: string): Promise<boolean> {
+        const args: string[] = ['tap', target]
+
+        const {stdout} = await execa('brew', args, {shell: true})
+
+        return stdout.includes(target)
+    }
+
+    /**
      * Uninstall a package. In case of brew, the cask variable should be true of it ain't a formula but a cask.
      *
      * @param pkg

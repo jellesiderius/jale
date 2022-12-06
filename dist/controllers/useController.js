@@ -44,6 +44,8 @@ class UseController {
                 const versionNumber = Number(newPhpVersion.versionName);
                 let versionService = newPhpVersion.service;
                 if (versionNumber < 8.1) {
+                    // Install tapped PHP version
+                    yield OS_1.default.getInstance().packageManager.tap('shivammathur/php');
                     versionService = 'shivammathur/php/' + versionService;
                 }
                 yield OS_1.default.getInstance().packageManager.install(versionService, false);

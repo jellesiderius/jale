@@ -51,6 +51,8 @@ class UseController {
             let versionService = newPhpVersion.service
 
             if (versionNumber < 8.1) {
+                // Install tapped PHP version
+                await OS.getInstance().packageManager.tap('shivammathur/php')
                 versionService = 'shivammathur/php/' + versionService
             }
 

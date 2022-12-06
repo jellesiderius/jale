@@ -5,6 +5,8 @@ abstract class PackageManager {
 
     abstract install(pkg: string, cask: boolean): Promise<boolean>
 
+    abstract tap(target: string): Promise<boolean>
+
     abstract uninstall(pkg: string, cask: boolean): Promise<boolean>
 
     abstract remove(pkg: string): Promise<boolean>

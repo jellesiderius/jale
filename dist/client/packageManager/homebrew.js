@@ -42,6 +42,19 @@ class Homebrew extends packageManager_1.default {
         });
     }
     /**
+     * Adds a tap to brew
+     *
+     * @param pkg
+     * @param cask
+     */
+    tap(target) {
+        return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            const args = ['tap', target];
+            const { stdout } = yield (0, execa_1.default)('brew', args, { shell: true });
+            return stdout.includes(target);
+        });
+    }
+    /**
      * Uninstall a package. In case of brew, the cask variable should be true of it ain't a formula but a cask.
      *
      * @param pkg
