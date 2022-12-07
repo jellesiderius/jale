@@ -9,7 +9,7 @@ const packageJson = require('../package.json')
 program
     .version(packageJson.version)
     .usage('<command> [options]')
-    .description(`Jale ${packageJson.version}\n${packageJson.description}`)
+    .description(`Jale+ ${packageJson.version}\n${packageJson.description}`)
 
 program.on('command:*', () => {
     program.help()
