@@ -14,7 +14,7 @@ Jale+ is currently still under heavy development and not ready to be used as you
 
 Services are using optimized configs (credits to [Valet+](https://github.com/weprovide/valet-plus)) to improve the performance of your local development environment.
 
-## Why Jale?
+## Why Jale+?
 It has a completely different approach compared to services like Laravel Valet and aims to be both flexible and performant.
 
 Instead of using a single 'server.php' file which proxies every request, we just use Nginx configuration files per site. Don't be afraid though! We made it as easy as possible. It is also possible to select an optimized app template for i.e. Laravel, Magento or Wordpress (and more to come!).
