@@ -1,5 +1,5 @@
 {
-  "name": "jale",
+  "name": "jale-plus",
   "version": "0.7.1",
   "description": "Jale+ is a blazing fast local development environment for MacOS written in Typescript.",
   "main": "./src/jale.js",
@@ -18,7 +18,10 @@
     "jale+",
     "just another local environment +"
   ],
-  "repository": "https://github.com/jellesiderius/jale-plus",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jellesiderius/jale-plus.git"
+  },
   "license": "GPL-3.0",
   "preferGlobal": true,
   "devDependencies": {
@@ -39,5 +42,9 @@
     "inquirer": "^8.1.1",
     "kleur": "^4.1.4",
     "listr2": "^3.10.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jelle Siderius"
 }
