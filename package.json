@@ -1,6 +1,6 @@
 {
   "name": "jale-plus",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Jale+ is a blazing fast local development environment for MacOS written in Typescript.",
   "main": "./src/jale.js",
   "bin": {

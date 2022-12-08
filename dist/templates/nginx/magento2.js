@@ -105,6 +105,34 @@ location ~ (index|get|static|report|404|503)\\.php$ {
     fastcgi_index index.php;
     fastcgi_param SCRIPT_FILENAME  $document_root$fastcgi_script_name;
     include fastcgi_params;
+}
+
+location ~ ^/wp/ {
+    add_header X-Frame-Options "SAMEORIGIN";
+    index index.php index.html index.htm;
+    root $MAGE_ROOT;
+    try_files $uri $uri/ @wphandler;
+    expires 30d;
+
+    location ~* \\.(ico|jpg|jpeg|png|gif|svg|js|css|swf|eot|ttf|otf|woff|woff2)$ {
+        add_header Cache-Control "public";
+        add_header X-Frame-Options "SAMEORIGIN";
+        expires +1y;
+        try_files $uri $uri/ /get.php?$args;
+    }
+
+    location ~* \\.php$ {
+        add_header X-Frame-Options "SAMEORIGIN";
+        try_files $uri $uri/ =404;
+        fastcgi_pass unix:${jale_1.jaleHomeDir}/jale.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+
+location @wphandler {
+    rewrite / /wp/index.php?q=$1;
 }`;
 exports.default = nginxMagento2Conf;
 //# sourceMappingURL=magento2.js.map
