@@ -43,7 +43,7 @@ class InstallController {
             type: 'checkbox',
             name: 'phpVersions',
             message: 'Choose one or more PHP versions',
-            choices: ['php@8.1', 'php@8.0', 'php@7.4', 'php@7.3', 'php@7.2'],
+            choices: ['php@8.2, php@8.1', 'php@8.0', 'php@7.4', 'php@7.3', 'php@7.2'],
             validate: (input: string[]) => {
                 return input.length >= 1
             }
@@ -223,7 +223,7 @@ class InstallController {
                             // @ts-ignore this is valid, however, the types are kind of a mess? not sure yet.
                             skip: async (): Promise<string | boolean> => {
                                 // @TODO: If newer version, remove this:
-                                if (phpVersion == 'php@8.1') phpVersion = 'php'
+                                if (phpVersion == 'php@8.2') phpVersion = 'php'
                                 const isInstalled = await OS.getInstance().packageManager.packageIsInstalled(phpVersion)
 
                                 if (isInstalled) return `${phpVersion} is already installed.`

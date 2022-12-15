@@ -44,7 +44,7 @@ class InstallController {
                 type: 'checkbox',
                 name: 'phpVersions',
                 message: 'Choose one or more PHP versions',
-                choices: ['php@8.1', 'php@8.0', 'php@7.4', 'php@7.3', 'php@7.2'],
+                choices: ['php@8.2, php@8.1', 'php@8.0', 'php@7.4', 'php@7.3', 'php@7.2'],
                 validate: (input) => {
                     return input.length >= 1;
                 }
@@ -170,7 +170,7 @@ class InstallController {
                             // @ts-ignore this is valid, however, the types are kind of a mess? not sure yet.
                             skip: () => tslib_1.__awaiter(this, void 0, void 0, function* () {
                                 // @TODO: If newer version, remove this:
-                                if (phpVersion == 'php@8.1')
+                                if (phpVersion == 'php@8.2')
                                     phpVersion = 'php';
                                 const isInstalled = yield OS_1.default.getInstance().packageManager.packageIsInstalled(phpVersion);
                                 if (isInstalled)

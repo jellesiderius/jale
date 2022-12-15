@@ -9,7 +9,9 @@ const phpFpm73_1 = tslib_1.__importDefault(require("../services/phpFpm73"));
 const phpFpm74_1 = tslib_1.__importDefault(require("../services/phpFpm74"));
 const phpFpm80_1 = tslib_1.__importDefault(require("../services/phpFpm80"));
 const phpFpm81_1 = tslib_1.__importDefault(require("../services/phpFpm81"));
+const phpFpm82_1 = tslib_1.__importDefault(require("../services/phpFpm82"));
 const supportedPhpVersions = [
+    (new phpFpm82_1.default).versionName,
     (new phpFpm81_1.default).versionName,
     (new phpFpm80_1.default).versionName,
     (new phpFpm74_1.default).versionName,
@@ -34,6 +36,9 @@ const getPhpFpmByName = (phpVersion) => {
             break;
         case `${(new phpFpm81_1.default).service}`:
             phpService = new phpFpm81_1.default();
+            break;
+        case `${(new phpFpm82_1.default).service}`:
+            phpService = new phpFpm82_1.default();
             break;
         default:
             throw Error('Invalid PHP version: ' + phpVersion);

@@ -40,19 +40,15 @@ class UseController {
             // Make sure the PHP version is installed.
             // @TODO: If newer version, remove this:
             let versionService = newPhpVersion.service;
-            if (versionService == 'php@8.1') {
+            if (versionService == 'php@8.2') {
                 versionService = 'php';
             }
             const isVersionInstalled = yield OS_1.default.getInstance().packageManager.packageIsInstalled(versionService);
             if (!isVersionInstalled) {
                 (0, console_1.info)(`PHP ${newPhpVersion.versionName} not found, installing now...`);
-                const versionNumber = Number(newPhpVersion.versionName);
-                let versionServiceInstall = versionService;
-                if (versionNumber < 8.1) {
-                    // Install tapped PHP version
-                    yield OS_1.default.getInstance().packageManager.tap('shivammathur/php');
-                    versionServiceInstall = 'shivammathur/php/' + versionService;
-                }
+                // Install tapped PHP version
+                yield OS_1.default.getInstance().packageManager.tap('shivammathur/php');
+                const versionServiceInstall = 'shivammathur/php/' + versionService;
                 yield OS_1.default.getInstance().packageManager.install(versionServiceInstall, false);
                 (0, console_1.info)(`Configuring PHP ${newPhpVersion.versionName}...`);
                 yield newPhpVersion.configure();

@@ -44,7 +44,7 @@ class UseController {
         // Make sure the PHP version is installed.
         // @TODO: If newer version, remove this:
         let versionService = newPhpVersion.service
-        if (versionService == 'php@8.1') {
+        if (versionService == 'php@8.2') {
             versionService = 'php'
         }
 
@@ -52,14 +52,10 @@ class UseController {
 
         if (!isVersionInstalled) {
             info(`PHP ${newPhpVersion.versionName} not found, installing now...`)
-            const versionNumber = Number(newPhpVersion.versionName)
-            let versionServiceInstall = versionService
 
-            if (versionNumber < 8.1) {
-                // Install tapped PHP version
-                await OS.getInstance().packageManager.tap('shivammathur/php')
-                versionServiceInstall = 'shivammathur/php/' + versionService
-            }
+            // Install tapped PHP version
+            await OS.getInstance().packageManager.tap('shivammathur/php')
+            const versionServiceInstall = 'shivammathur/php/' + versionService
 
             await OS.getInstance().packageManager.install(versionServiceInstall, false)
             info(`Configuring PHP ${newPhpVersion.versionName}...`)

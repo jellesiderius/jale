@@ -15,6 +15,7 @@ const phpFpm73_1 = tslib_1.__importDefault(require("../services/phpFpm73"));
 const phpFpm74_1 = tslib_1.__importDefault(require("../services/phpFpm74"));
 const phpFpm80_1 = tslib_1.__importDefault(require("../services/phpFpm80"));
 const phpFpm81_1 = tslib_1.__importDefault(require("../services/phpFpm81"));
+const phpFpm82_1 = tslib_1.__importDefault(require("../services/phpFpm82"));
 const redis_1 = tslib_1.__importDefault(require("../services/redis"));
 const console_1 = require("../utils/console");
 const database_1 = require("../utils/database");
@@ -29,6 +30,7 @@ class ServiceController {
             new mariadb_1.default(),
             new mysql80_1.default(),
             new mysql57_1.default(),
+            new phpFpm82_1.default(),
             new phpFpm81_1.default(),
             new phpFpm80_1.default(),
             new phpFpm74_1.default(),

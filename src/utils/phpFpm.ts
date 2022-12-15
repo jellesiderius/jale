@@ -6,8 +6,10 @@ import PhpFpm73 from '../services/phpFpm73'
 import PhpFpm74 from '../services/phpFpm74'
 import PhpFpm80 from '../services/phpFpm80'
 import PhpFpm81 from '../services/phpFpm81'
+import PhpFpm82 from '../services/phpFpm82'
 
 const supportedPhpVersions: string[] = [
+    (new PhpFpm82).versionName,
     (new PhpFpm81).versionName,
     (new PhpFpm80).versionName,
     (new PhpFpm74).versionName,
@@ -33,6 +35,9 @@ const getPhpFpmByName = (phpVersion: string): PhpFpm => {
         break
     case `${(new PhpFpm81).service}`:
         phpService = new PhpFpm81()
+        break
+    case `${(new PhpFpm82).service}`:
+        phpService = new PhpFpm82()
         break
     default:
         throw Error('Invalid PHP version: ' + phpVersion)

@@ -1,6 +1,15 @@
 import {jaleHomeDir} from '../../utils/jale'
 
 const nginxMagento1Conf = `
+root $MAGE_ROOT;
+
+index index.php;
+autoindex off;
+charset off;
+
+add_header 'X-Content-Type-Options' 'nosniff';
+add_header 'X-XSS-Protection' '1; mode=block';
+
 ## These locations would be hidden by .htaccess normally 
 location ^~ /app/                { deny all; } 
 location ^~ /includes/           { deny all; } 
